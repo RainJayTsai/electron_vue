@@ -4,13 +4,11 @@ export default [
         // name: 'landing-page',
         // component: require('components/LandingPageView')
         path: '/xxx',
-        name: 'editor',
         component: require('components/Editor')
     },
     {
         path: '/',
-        name: 'fileinput',
-        component: require('components/FileInput')
+        component: require('pages/JsonTool')
     },
     {
         path: '*',
