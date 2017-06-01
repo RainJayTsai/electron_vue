@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--https://stackoverflow.com/questions/40915436/vuejs-update-parent-data-from-child-component-->
-    <Editor v-model="yaml"></Editor>
+    <Editor v-bind:context="yaml" v-on:context_changed="editChange"></Editor>
     <!--<div style="white-space: pre">{{context}}</div>-->
     <FileInput v-on:submit="doSubmit" v-on:get_default_yaml="doDefaultYaml"></FileInput>
   </div>
@@ -20,7 +20,7 @@
   export default{
     data() {
       return {
-        yaml: "test yaml"
+        yaml: "name: "
       }
     },
     components: {
@@ -48,10 +48,16 @@
             }
         },
         doDefaultYaml(file_path){
-            console.log("ADSFDS");
-            debugger
-            this.yaml="123456789";
+            this.$http.post('http://127.0.0.1:8787/get_default', {file_path}).then(response => {
+                console.log(response.body.default_yaml)
+                this.yaml = response.body.default_yaml;
+            }, response => {
+                console.assert(false, "Server response failed");
+            });
 
+        },
+        editChange(context){
+            this.yaml = context
         }
     }
   }

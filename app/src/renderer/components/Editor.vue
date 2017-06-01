@@ -16,26 +16,28 @@
     export default{
         data(){
             return {
-                context: "name: "
+//                _context: this.context
             }
         },
         props: {
-            raw_data: String
+            context: String
         },
         methods: {
             indent(e) {
-                this.context = this.context.slice(0, e.srcElement.selectionEnd) +
-                    '    ' + this.context.slice(e.srcElement.selectionEnd)
+                this.context = this.context.slice(0, e.srcElement.selectionStart) +
+                    '    ' + this.context.slice(e.srcElement.selectionStart);
+
+                e.srcElement.selectionEnd = 0;
             }
         },
         watch: {
             'context': function () {
-                this.$emit('input', this.context);
+                this.$emit('context_changed', this.context);
             }
-        }//,
-//        created(){
-//            this.context = this.raw_data
-//        }
+        },
+        created(){
+
+        }
     }
 </script>
 

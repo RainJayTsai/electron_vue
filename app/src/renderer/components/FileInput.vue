@@ -3,8 +3,7 @@
         <form @submit.prevent="onSubmit">
         <input type="file" name="points" @change="onFileChange"/>
         <div>You Select File is <input type="text" v-model="file_path"></div>
-        <div><span class="has-header">Has csv header: <input type=checkbox v-model="has_header"></span><input type=submit value="Submit"></div>
-        <input type=submit value="Default">
+        <div><span class="has-header">Has csv header: <input type=checkbox v-model="has_header"></span><input type=submit value="Submit"> <input type=submit value="Default"></div>
         </form>
     </div>
 </template>
