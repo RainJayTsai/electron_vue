@@ -1,8 +1,9 @@
 <template>
   <div>
+    <!--https://stackoverflow.com/questions/40915436/vuejs-update-parent-data-from-child-component-->
     <Editor v-model="yaml"></Editor>
     <!--<div style="white-space: pre">{{context}}</div>-->
-    <FileInput v-on:submit="doSubmit"></FileInput>
+    <FileInput v-on:submit="doSubmit" v-on:get_default_yaml="doDefaultYaml"></FileInput>
   </div>
 </template>
 
@@ -45,6 +46,12 @@
                 console.assert(false, "Server response failed");
               });
             }
+        },
+        doDefaultYaml(file_path){
+            console.log("ADSFDS");
+            debugger
+            this.yaml="123456789";
+
         }
     }
   }

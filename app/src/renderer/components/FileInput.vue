@@ -4,6 +4,7 @@
         <input type="file" name="points" @change="onFileChange"/>
         <div>You Select File is <input type="text" v-model="file_path"></div>
         <div><span class="has-header">Has csv header: <input type=checkbox v-model="has_header"></span><input type=submit value="Submit"></div>
+        <input type=submit value="Default">
         </form>
     </div>
 </template>
@@ -21,7 +22,12 @@
                 this.file_path = e.target.files[0].path;
             },
             onSubmit(e){
-                this.$emit('submit', this.file_path, this.has_header);
+                console.log(e);
+                if(document.activeElement.value == "Default"){
+                    this.$emit('get_default_yaml',this.file_path);
+                }else{
+                    this.$emit('submit', this.file_path, this.has_header);
+                }
             }
         }
     }

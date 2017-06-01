@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+    <!--https://stackoverflow.com/questions/40915436/vuejs-update-parent-data-from-child-component-->
     <textarea v-model="context"
               placeholder="Config Data"
               @keydown.tab="indent"
@@ -31,10 +32,10 @@
             'context': function () {
                 this.$emit('input', this.context);
             }
-        },
-        catread(){
-            this.context = this.raw_data
-        }
+        }//,
+//        created(){
+//            this.context = this.raw_data
+//        }
     }
 </script>
 
