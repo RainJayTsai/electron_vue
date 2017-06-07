@@ -11,12 +11,12 @@
   import Editor from 'components/Editor'
   import FileInput from 'components/FileInput'
   //import dialog from 'electron'
-  import rename from 'fs'
+//  import rename from 'fs'
   //http://stackoverflow.com/questions/37994441/how-to-use-fs-module-inside-electron-atom-webpack-application
   const {dialog} = require('electron').remote
   var remote = require('electron').remote;
-  var fs = remote.require('fs');
-
+//  var fs = remote.require('fs');
+  var fs = require('fs.extra')
   export default{
     data() {
       return {
@@ -36,7 +36,8 @@
                 dialog.showSaveDialog({
                     title: 'Save to location'
                 }, (dstpath) => {
-                    fs.rename(response.body.file_path, dstpath, () => {
+                    console.log(dstpath)
+                    fs.move(response.body.file_path, dstpath, () => {
                         console.log('OK');
                     });
                 });

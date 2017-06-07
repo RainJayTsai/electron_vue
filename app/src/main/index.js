@@ -38,9 +38,13 @@ function createWindow() {
 let subpy = null
 const createPyProc = () => {
     if (subpy == null) {
-        // subpy = require('child_process').spawn('cmd.exe ' + path.join(__dirname, '../../app.asar.unpacked/pp', 'main.exe' ), {detached: false});
-        subpy = child_process.execFile(path.join(__dirname, '../../app.asar.unpacked/pp', 'main.exe'),{detached: false,stdio:'ignore'});
+        if(process.env.NODE_ENV === 'development'){
+            subpy = require('child_process').spawn( path.join(__dirname, '../../pp', 'main.exe' ), {detached: false});
+        }else{
+            subpy = child_process.execFile(path.join(__dirname, '../../app.asar.unpacked/pp', 'main.exe'),{detached: false,stdio:'ignore'});
+        }
         console.log(subpy.pid)
+
     }
 }
 
