@@ -15,8 +15,8 @@
   //http://stackoverflow.com/questions/37994441/how-to-use-fs-module-inside-electron-atom-webpack-application
   const {dialog} = require('electron').remote
   var remote = require('electron').remote;
-//  var fs = remote.require('fs');
-  var fs = require('fs.extra')
+//  var fs = remote.require('fs-extra');
+  var fs = require('fs-extra');
   export default{
     data() {
       return {
