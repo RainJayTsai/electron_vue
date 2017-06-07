@@ -1,9 +1,17 @@
 <template>
     <div>
         <form @submit.prevent="onSubmit">
-        <input type="file" name="points" @change="onFileChange"/>
-        <div>You Select File is <input type="text" v-model="file_path"></div>
-        <div><span class="has-header">Has csv header: <input type=checkbox v-model="has_header"></span><input type=submit value="Submit"> <input type=submit value="Default"></div>
+            <label class="custom-file">
+                <input type="file" name="points" @change="onFileChange" class="custom-file-input"/>
+            </label>
+            <!--<div>You Select File is <input type="text" v-model="file_path"></div>-->
+            <div class="btns">
+                <span class="has-header" style="font-size: 20px">Has csv header:
+                    <input type=checkbox class="form-check-input" v-model="has_header">
+                </span>
+                <input class="btn btn-success" type=submit value="Default">
+                <input class="btn btn-primary" type=submit value="Submit">
+            </div>
         </form>
     </div>
 </template>
@@ -33,8 +41,11 @@
 </script>
 
 <style>
-.has-header
-{
+.has-header {
     margin: 1em;
+}
+
+.btns {
+    margin-top: 5px;
 }
 </style>
