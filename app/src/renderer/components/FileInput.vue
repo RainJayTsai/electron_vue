@@ -1,9 +1,9 @@
 <template>
     <div>
         <form @submit.prevent="onSubmit">
-            <div class="custom-file">
+            <label class="custom-file">
                 <input type="file" name="points" @change="onFileChange" class="custom-file-input"/>
-            </div>
+            </label>
             <!--<div>You Select File is <input type="text" v-model="file_path"></div>-->
             <div class="btns">
                 <span class="has-header" style="font-size: 20px">Has csv header:

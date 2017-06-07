@@ -16,7 +16,7 @@
   const {dialog} = require('electron').remote
   var remote = require('electron').remote;
 //  var fs = remote.require('fs');
-  var fs = require('fs.extra')
+  var fs = require('fs-extra')
   export default{
     data() {
       return {
