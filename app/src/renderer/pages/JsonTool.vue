@@ -38,7 +38,7 @@
                     title: 'Save to location'
                 }, (dstpath) => {
                     console.log(dstpath)
-                    fs.move(response.body.file_path, dstpath, () => {
+                    fs.move(response.body.file_path, dstpath, { overwrite: true }, () => {
                         console.log('OK');
                     });
                 });
