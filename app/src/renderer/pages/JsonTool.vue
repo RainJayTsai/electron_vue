@@ -62,7 +62,7 @@ export default{
                 });
 
                 const PollingProgress = ()=>{
-                    this.$http.get('http://127.0.0.1:8787/progess')
+                    this.$http.get('http://127.0.0.1:8787/progress')
                     .then(response => {
                         this.progress = parseFloat(response.body);
                         if(this.flow_id == 2) {
