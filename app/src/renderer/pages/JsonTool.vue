@@ -4,7 +4,7 @@
         <Editor v-model="yaml"></Editor>
         <!--<div style="white-space: pre">{{context}}</div>-->
         <FileInput v-show="flow_id == 1" @submit="doSubmit" @get_default_yaml="doDefaultYaml"></FileInput>
-        <div v-show="flow_id == 2" class="pbar-background">
+        <div v-show="flow_id >= 2" class="pbar-background">
             <div class="pbar-finish" :style="{width: progress+'%'}">
                 {{progress}}% Complete
             </div>
@@ -46,13 +46,17 @@ export default{
                 ).then(response => {
                     // get body data
                     console.log(response.body.file_path);
+                    this.progress = 100;
+                    this.flow_id = 3;
                     dialog.showSaveDialog({
                         title: 'Save to location'
                     }, (dstpath) => {
-                        fs.move(response.body.file_path, dstpath, { overwrite: true }, () => {
-                            console.log('OK');
-                            this.flow_id = 1;
-                        });
+                        this.flow_id = 1;
+                        if(dstpath){
+                            fs.move(response.body.file_path, dstpath, { overwrite: true }, () => {
+                                console.log('OK');
+                            });
+                        }
                     });
 
                 }, response => {
@@ -64,7 +68,7 @@ export default{
                 const PollingProgress = ()=>{
                     this.$http.get('http://127.0.0.1:8787/progress')
                     .then(response => {
-                        this.progress = parseFloat(response.body);
+                        this.progress = Math.max(this.progress,parseFloat(response.body));
                         if(this.flow_id == 2) {
                             PollingProgress();
                         }
