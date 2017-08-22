@@ -36,4 +36,7 @@
     justify-content: center;
     text-align: center;
   }
+  #app {
+      width: 100%;
+  }
 </style>
