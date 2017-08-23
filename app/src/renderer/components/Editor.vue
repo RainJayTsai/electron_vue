@@ -1,5 +1,5 @@
 <template>
-    <div style="width: 100%">
+    <div style="width: 100%; height: 90%;">
         <!-- https://vuejs.org/v2/guide/components.html#Form-Input-Components-using-Custom-Events -->
         <textarea
             :value="value"
@@ -39,8 +39,8 @@ export default{
 <style>
 textarea {
     width: 100%;
-    height: 80%;
-    min-height: 450px;
+    height: 100%;
+    /*min-height: 450px;*/
     resize: none;
     font-size: 20px;
     text-rendering: optimizeSpeed;

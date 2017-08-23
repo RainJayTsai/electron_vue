@@ -36,21 +36,26 @@ function createWindow() {
     console.log('mainWindow opened')
 }
 let subpy = null
+var os = require('os')
 const createPyProc = () => {
-    if (subpy == null) {
-        if(process.env.NODE_ENV === 'development'){
-            subpy = require('child_process').spawn( path.join(__dirname, '../../pp', 'main.exe' ), {detached: false});
-        }else{
-            subpy = child_process.execFile(path.join(__dirname, '../../app.asar.unpacked/pp', 'main.exe'),{detached: false,stdio:'ignore'});
-        }
-        console.log(subpy.pid)
+    if (os.platform() == 'win32') {
+        if (subpy == null) {
+            if (process.env.NODE_ENV === 'development') {
+                subpy = require('child_process').spawn(path.join(__dirname, '../../pp', 'main.exe'), {detached: false});
+            } else {
+                subpy = child_process.execFile(path.join(__dirname, '../../app.asar.unpacked/pp', 'main.exe'), {
+                    detached: false,
+                    stdio: 'ignore'
+                });
+            }
+            console.log(subpy.pid)
 
+        }
     }
 }
 
 
 const exitPyProc = () => {
-    var os = require('os')
     if( os.platform() == 'win32'){
         console.log("FCUKED")
         console.log("PID " + subpy.pid)
@@ -68,7 +73,9 @@ const exitPyProc = () => {
     }
     else{
         console.log("Fucking")
-        subpy.kill('SIGINT')
+        if(subpy){
+            subpy.kill('SIGINT')
+        }
     }
 }
 

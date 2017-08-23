@@ -1,5 +1,5 @@
 <template>
-    <div style="position: relative; margin: 0 auto;">
+    <div style="position: relative; margin: 0 auto; height: 10%;">
         <form @submit.prevent="onSubmit" class="form-group">
             <div style="position:absolute; left: 0; top: 0;padding: 0.375rem">
                 <input type="file" name="points" @change="onFileChange"/>
